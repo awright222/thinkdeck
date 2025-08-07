@@ -1,32 +1,20 @@
 import React, { useState, useRef } from 'react';
-
-interface Card {
-  id: string;
-  question: string;
-  answer: string;
-  imageUrl?: string;
-}
-
-interface Deck {
-  id: string;
-  name: string;
-  cards: Card[];
-}
+import type { FlashcardDeck, Flashcard } from './types';
 
 interface FlashcardViewerProps {
-  deck: Deck;
+  deck: FlashcardDeck;
   onExit: () => void;
-  onDeckUpdate: (deck: Deck) => void;
+  onDeckUpdate: (deck: FlashcardDeck) => void;
 }
 
-const FlashcardViewer: React.FC<FlashcardViewerProps> = ({ deck, onExit, onDeckUpdate }) => {
+const FlashcardViewer: React.FC<FlashcardViewerProps> = ({ deck, onExit, onDeckUpdate: _ }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showGrid, setShowGrid] = useState(false);
-  const [activeFolder, setActiveFolder] = useState<'study' | 'review' | 'nailed'>('study');
-  const [reviewCards, setReviewCards] = useState<Card[]>([]);
-  const [nailedCards, setNailedCards] = useState<Card[]>([]);
-  const [studyCards, setStudyCards] = useState<Card[]>(deck.cards);
+  const [activeFolder, setActiveFolder] = useState<string | null>(null);
+  const [reviewCards, setReviewCards] = useState<Flashcard[]>([]);
+  const [nailedCards, setNailedCards] = useState<Flashcard[]>([]);
+  const [studyCards, setStudyCards] = useState<Flashcard[]>(deck.cards);
   const [gridFlippedCards, setGridFlippedCards] = useState<Set<string>>(new Set());
   
   // Simple drag state
