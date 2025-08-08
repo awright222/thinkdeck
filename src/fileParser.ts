@@ -29,7 +29,6 @@ export const parseCSVFile = (file: File): Promise<FileUploadResult> => {
                 incorrectCount: 0,
               };
               
-              // Debug logging in development
               if (process.env.NODE_ENV === 'development' && imageUrl.trim()) {
                 console.log('Parsed card with image:', {
                   question: question.trim(),

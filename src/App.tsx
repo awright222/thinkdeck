@@ -12,7 +12,6 @@ function App() {
   const [uploadStatus, setUploadStatus] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Load decks on mount
   useEffect(() => {
     const loadedDecks = loadDecks();
     setDecks(loadedDecks);
@@ -98,7 +97,6 @@ function App() {
     
     const file = event.dataTransfer.files[0];
     if (file && fileInputRef.current) {
-      // Create a proper file input event
       const dt = new DataTransfer();
       dt.items.add(file);
       fileInputRef.current.files = dt.files;
@@ -109,7 +107,6 @@ function App() {
     }
   };
 
-  // Render different views
   const renderSidebar = () => (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -592,7 +589,6 @@ function App() {
     </div>
   );
 
-  // Main render
   if (currentView === 'study' && selectedDeck) {
     return (
       <div className="app">

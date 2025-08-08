@@ -6,7 +6,6 @@ const STORAGE_KEYS = {
   APP_SETTINGS: 'app_settings',
 } as const;
 
-// Deck management
 export const loadDecks = (): FlashcardDeck[] => {
   try {
     const stored = localStorage.getItem(STORAGE_KEYS.DECKS);
